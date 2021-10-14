@@ -1,0 +1,15 @@
+main {
+    width: 960px;
+    height: 960px;
+    max-width: 960px;
+    max-height: 960px;
+    margin: 0 auto;
+    /* border: solid black 1px; */
+
+}
+
+#gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+
+}
