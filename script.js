@@ -12,20 +12,23 @@ const reloadButton = document.querySelector('#reload');
 
 // Defining VARIABLES:
 
-let currentGridSize = 96;
+let currentGridSize = 32;
 
-
+// Changing Grid Size:
 const gridSize = document.querySelectorAll('.gridSize');
 gridSize.forEach((element) => {
-    element.addEventListener('click', function(e) {
+    element.addEventListener('click', etchSketch, function(e) {
         currentGridSize = this.value;
+        console.log(this.value);
+        gridContainer.innerHTML = '';
         
     })
 })
 
 
+
 // Generate <divs> for grid:
-// function etchSketch() {
+function etchSketch() {
 for (let i = 0; i < (currentGridSize * currentGridSize); i++) {
     const div = document.createElement('div');
 
@@ -46,12 +49,16 @@ for (let i = 0; i < (currentGridSize * currentGridSize); i++) {
 
     div.setAttribute('class', 'gridDivs');
     div.setAttribute('id', `div${i + 1}`);
-
     
     gridContainer.appendChild(div);
-    
+
+    standardButton.addEventListener('click', standard);
+    rainbowButton.addEventListener('click', rainbow);
+    eraseButton.addEventListener('click', erase);
+    reloadButton.addEventListener('click', refresh);
 }
-// }
+}
+etchSketch();
 
 
 
@@ -79,9 +86,6 @@ function rainbow() {
             } else if (currentGridSize === 96) {
                 element.setAttribute('style', `background-color: rgb(${rndmColor1},${rndmColor2},${rndmColor3});; width: 10px; height: 10px;`);
             }
-
-
-            // element.setAttribute('style', `background-color: rgb(${rndmColor1},${rndmColor2},${rndmColor3}); width: 60px; height: 60px;`)
         })
     });
 }
@@ -120,14 +124,19 @@ function erase() {
     });
 }
 
-
-standardButton.addEventListener('click', standard);
-rainbowButton.addEventListener('click', rainbow);
-eraseButton.addEventListener('click', erase);
-reloadButton.addEventListener('click', function(e) {
-    gridElements.style.background = 'white';
-    
-});
+function refresh() {
+    gridElements.forEach((element) => {
+        if (currentGridSize === 16) {
+            element.setAttribute('style', `background-color: white; width: 60px; height: 60px;`);
+        } else if (currentGridSize === 32) {
+            element.setAttribute('style', `background-color: white; width: 30px; height: 30px;`);
+        } else if (currentGridSize === 64) {
+            element.setAttribute('style', `background-color: white; width: 15px; height: 15px;`);
+        } else if (currentGridSize === 96) {
+            element.setAttribute('style', `background-color: white; width: 10px; height: 10px;`);
+        }
+    })
+}
 
 
 standard();
