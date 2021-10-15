@@ -7,19 +7,21 @@ const g16Button = document.querySelector('#g16');
 const g32Button = document.querySelector('#g32');
 const g64Button = document.querySelector('#g64');
 const g96Button = document.querySelector('#g96');
+const reloadButton = document.querySelector('#reload');
 
 
 // Defining VARIABLES:
-let currentGridSize = 16;
 
-// const gridSize = document.querySelectorAll('.gridSize');
-// gridSize.forEach((element) => {
-//     element.addEventListener('click', function(e) {
-//         currentGridSize = this.value;
-//         console.log(currentGridSize);
-//         etchSketch();
-//     })
-// })
+let currentGridSize = 96;
+
+
+const gridSize = document.querySelectorAll('.gridSize');
+gridSize.forEach((element) => {
+    element.addEventListener('click', function(e) {
+        currentGridSize = this.value;
+        
+    })
+})
 
 
 // Generate <divs> for grid:
@@ -27,16 +29,27 @@ let currentGridSize = 16;
 for (let i = 0; i < (currentGridSize * currentGridSize); i++) {
     const div = document.createElement('div');
 
-
-    gridContainer.classList.add('grid16');
-    div.style.cssText = "width: 60px; height: 60px;";
-
+    if (currentGridSize === 16) {
+        gridContainer.classList.add('grid16');
+        div.style.cssText = "width: 60px; height: 60px;";
+    } else if (currentGridSize === 32) {
+        gridContainer.classList.add('grid32');
+        div.style.cssText = "width: 30px; height: 30px;";
+    } else if (currentGridSize === 64) {
+        gridContainer.classList.add('grid64');
+        div.style.cssText = "width: 15px; height: 15px;";
+    } else if (currentGridSize === 96) {
+        gridContainer.classList.add('grid96');
+        div.style.cssText = "width: 10px; height: 10px;";
+    }
 
 
     div.setAttribute('class', 'gridDivs');
     div.setAttribute('id', `div${i + 1}`);
 
+    
     gridContainer.appendChild(div);
+    
 }
 // }
 
@@ -46,7 +59,7 @@ for (let i = 0; i < (currentGridSize * currentGridSize); i++) {
 
 
 // Eventhandler:
-const gridElements = document.querySelectorAll('.gridDivs');
+gridElements = document.querySelectorAll('.gridDivs');
 
 function rainbow() {
     gridElements.forEach((element) => {
@@ -57,7 +70,18 @@ function rainbow() {
             let rndmColor3 = Math.floor(Math.random() * 256);
 
             // Assigning CSS to divs:
-            element.setAttribute('style', `background-color: rgb(${rndmColor1},${rndmColor2},${rndmColor3}); width: 60px; height: 60px;`)
+            if (currentGridSize === 16) {
+                element.setAttribute('style', `background-color: rgb(${rndmColor1},${rndmColor2},${rndmColor3});; width: 60px; height: 60px;`);
+            } else if (currentGridSize === 32) {
+                element.setAttribute('style', `background-color: rgb(${rndmColor1},${rndmColor2},${rndmColor3});; width: 30px; height: 30px;`);
+            } else if (currentGridSize === 64) {
+                element.setAttribute('style', `background-color: rgb(${rndmColor1},${rndmColor2},${rndmColor3});; width: 15px; height: 15px;`);
+            } else if (currentGridSize === 96) {
+                element.setAttribute('style', `background-color: rgb(${rndmColor1},${rndmColor2},${rndmColor3});; width: 10px; height: 10px;`);
+            }
+
+
+            // element.setAttribute('style', `background-color: rgb(${rndmColor1},${rndmColor2},${rndmColor3}); width: 60px; height: 60px;`)
         })
     });
 }
@@ -66,7 +90,15 @@ function standard() {
     gridElements.forEach((element) => {
         element.addEventListener('mouseover', function (e) {
             // Assigning CSS to divs:
-            element.setAttribute('style', `background-color: black; width: 60px; height: 60px;`)
+            if (currentGridSize === 16) {
+                element.setAttribute('style', `background-color: black; width: 60px; height: 60px;`);
+            } else if (currentGridSize === 32) {
+                element.setAttribute('style', `background-color: black; width: 30px; height: 30px;`);
+            } else if (currentGridSize === 64) {
+                element.setAttribute('style', `background-color: black; width: 15px; height: 15px;`);
+            } else if (currentGridSize === 96) {
+                element.setAttribute('style', `background-color: black; width: 10px; height: 10px;`);
+            }
         })
     });
 }
@@ -75,13 +107,27 @@ function erase() {
     gridElements.forEach((element) => {
         element.addEventListener('mouseover', function (e) {
             // Assigning CSS to divs:
-            element.setAttribute('style', `background-color: white; width: 60px; height: 60px;`)
+            if (currentGridSize === 16) {
+                element.setAttribute('style', `background-color: white; width: 60px; height: 60px;`);
+            } else if (currentGridSize === 32) {
+                element.setAttribute('style', `background-color: white; width: 30px; height: 30px;`);
+            } else if (currentGridSize === 64) {
+                element.setAttribute('style', `background-color: white; width: 15px; height: 15px;`);
+            } else if (currentGridSize === 96) {
+                element.setAttribute('style', `background-color: white; width: 10px; height: 10px;`);
+            }
         })
     });
 }
 
 
-
 standardButton.addEventListener('click', standard);
 rainbowButton.addEventListener('click', rainbow);
 eraseButton.addEventListener('click', erase);
+reloadButton.addEventListener('click', function(e) {
+    gridElements.style.background = 'white';
+    
+});
+
+
+standard();
