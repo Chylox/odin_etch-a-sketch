@@ -12,18 +12,18 @@ const reloadButton = document.querySelector('#reload');
 
 // Defining VARIABLES:
 
-let currentGridSize = 32;
+let currentGridSize = 64;
 
 // Changing Grid Size:
-const gridSize = document.querySelectorAll('.gridSize');
-gridSize.forEach((element) => {
-    element.addEventListener('click', etchSketch, function(e) {
-        currentGridSize = this.value;
-        console.log(this.value);
-        gridContainer.innerHTML = '';
+// const gridSize = document.querySelectorAll('.gridSize');
+// gridSize.forEach((element) => {
+//     element.addEventListener('click', etchSketch, function(e) {
+//         currentGridSize = this.value;
+//         console.log(this.value);
+//         gridContainer.innerHTML = '';
         
-    })
-})
+//     });
+// })
 
 
 
@@ -138,5 +138,5 @@ function refresh() {
     })
 }
 
-
+// Initialize with a standard color:
 standard();

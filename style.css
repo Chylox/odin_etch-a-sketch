@@ -3,9 +3,19 @@ header {
   text-align: center;
 }
 
+h1 {
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: italic;
+  font-size: 2.5em;
+  border-bottom: solid black 5px;
+  width: 50%;
+  margin: 0 auto;
+}
+
 button {
   width: 150px;
   padding: 5px;
+  margin: 2vh;
 }
 
 main {
